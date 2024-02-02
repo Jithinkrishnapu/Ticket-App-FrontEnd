@@ -1,13 +1,7 @@
 import React from 'react'
-import Modal from './Modal'
 
-export default function Header() {
+const Modal = () => {
   return (
-    <div className='w-full bg-white items-center flex-row justify-between flex top-0  h-[10vh] sticky  border-b-2 mb-2 ' >
-      <span className='font-bold text-lg' >All Tickets</span>
-      <button onClick={()=>console.log("first")} data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-  + New Ticket
-</button>
 <div id="crud-modal" tabIndex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-md max-h-full">
   
@@ -58,6 +52,10 @@ export default function Header() {
         </div>
     </div>
 </div> 
-    </div>
-  )
-}
+  );
+};
+
+export default Modal;
+
+
+
