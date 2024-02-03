@@ -33,18 +33,19 @@ export default function Home() {
       assignedTo:val.assignedTo,
       status: val.status,
       createdOn: val.createdAt,
+      comments:val.comments
     })))
     setData(data)
   }
 
 useEffect(() => {
- if(!on){
+ if(!on && !open){
   getTickets()
  }
-}, [on])
+}, [on,open])
 
 const updateStatus = async(id,status)=>{
-  updateTicket(id,status)
+  updateTicket(id,{status:status})
   .then((response) => {
     // Handle the response if needed
     console.log("Ticket updated successfully:", response);

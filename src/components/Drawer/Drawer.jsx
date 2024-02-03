@@ -3,14 +3,33 @@ import PropTypes from "prop-types";
 import { getStatusColor } from "../../utils/getStatusColor";
 import moment from "moment";
 import Select from "../MainBody/components/SelectBox";
+import { updateTicket } from "../../services/ticketService";
 
 export const Drawer = (props) => {
   const { open, onClose,item} = props;
 const [status, setStatus] = useState('')
+const [comments, setComments] = useState('')
 
 useEffect(() => {
 setStatus(item.status)
 }, [item])
+
+
+const updateStatus = async(id)=>{
+  updateTicket(id,{status:status,comments:comments})
+  .then((response) => {
+    // Handle the response if needed
+    console.log("Ticket updated successfully:", response);
+    onClose()
+    setComments('')
+    // Optionally, you can reset the form or close the modal here
+    
+  })
+  .catch((error) => {
+    // Handle the error if needed
+    console.error("Error creating ticket:", error);
+  });
+}
 
 
   return (
@@ -93,6 +112,8 @@ setStatus(item.status)
               <DetailLabel head='Assigned To' sub={item.assignedTo}/>
           </div>
           <br />
+              {item.comments && <DetailLabel head='Previous Comment' sub={item.comments} />}
+              <br/>
           <div class="mb-6">
             <label
               for="message"
@@ -101,14 +122,17 @@ setStatus(item.status)
               Your Message
             </label>
             <textarea
+              onChange={(e)=>setComments(e.target.value)}
               id="message"
               rows="4"
+              value={comments}
               class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Your message..."
             ></textarea>
           </div>
           <button
             type="submit"
+            onClick={()=>updateStatus(item.id)}
             class="text-white bg-blue-700 hover:bg-blue-800 w-full focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 block"
           >
             Send message

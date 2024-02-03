@@ -51,13 +51,13 @@ export async function createTicket(ticketData) {
     });
   }
 
-  export async function updateTicket(id,status) {
+  export async function updateTicket(id,formdata) {
     return fetch(url+`/ticket/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({status:status})
+      body: JSON.stringify(formdata)
     })
     .then(response => {
       if (!response.ok) {
