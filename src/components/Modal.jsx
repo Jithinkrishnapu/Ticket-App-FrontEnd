@@ -3,11 +3,10 @@ import { createTicket } from "../services/ticketService";
 
 export default function Modal(props) {
   const [formData, setFormData] = useState({
-    platform: "KAREMITRA",
+    platform: "",
     subject: "",
-    description:
-      "",
-    userName: "Nishad",
+    description:"",
+    userName: "",
     createdBy: "DIGITAL",
     assignedTo: "",
   });
@@ -23,11 +22,11 @@ export default function Modal(props) {
 
         // Optionally, you can reset the form or close the modal here
         setFormData({
-            platform: "KAREMITRA",
+            platform: "",
             subject: "",
             description:
               "",
-            userName: "Nishad",
+            userName: "",
             createdBy: "DIGITAL",
             assignedTo: "",
         });
@@ -84,7 +83,6 @@ export default function Modal(props) {
             <div class="grid gap-4 mb-4 grid-cols-2">
               <div class="col-span-2">
                 <label
-                  onChange={handleChange}
                   for="subject"
                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
@@ -100,20 +98,20 @@ export default function Modal(props) {
                   required=""
                 />
               </div>
-              <div class="col-span-2 sm:col-span-1">
+              <div class="col-span-2">
                 <label
-                  for="price"
+                  for="userName"
                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Assign to
+                  Name
                 </label>
                 <input
                   onChange={handleChange}
                   type="text"
-                  name="assignedTo"
-                  id="assignedTo"
+                  name="userName"
+                  id="userName"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                  placeholder="Type the name"
+                  placeholder="Type your name"
                   required=""
                 />
               </div>
@@ -124,17 +122,37 @@ export default function Modal(props) {
                 >
                   Platform
                 </label>
+                <input
+                  onChange={handleChange}
+                  type="text"
+                  name="platform"
+                  id="platform"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  placeholder="Type platform here"
+                  required=""
+                />
+              </div>
+              <div class="col-span-2 sm:col-span-1">
+                <label
+                  for="assignedTo"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Assign To
+                </label>
                 <select
                   onChange={handleChange}
-                  id="platform"
-                  name="platform"
+                  id="assignedTo"
+                  name="assignedTo"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 >
-                  <option selected="">Select Platform</option>
-                  <option value="KAREMITRA">Karemitra</option>
-                  <option value="KAREFLOW">Kareflow</option>
-                  <option value="KAREBUDDY">Karebuddy</option>
-                  <option value="KAREDB">Karedb</option>
+                  <option selected="">Select Department</option>
+                  <option value="Product">Product</option>
+                  <option value="Digital">Digital</option>
+                  <option value="Content">Content</option>
+                  <option value="Operations">Operations</option>
+                  <option value="Sales">Sales</option>
+                  <option value="Sales">Finance</option>
+                  <option value="Sales">Insurance</option>
                 </select>
               </div>
               <div class="col-span-2">

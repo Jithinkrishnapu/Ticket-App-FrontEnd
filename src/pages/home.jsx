@@ -1,14 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Header from '../components/Header'
 import ListView from '../components/MainBody/ListView'
 import Modal from '../components/Modal'
 import useToggle from '../hooks/useToogler';
 import { deleteTicket, getAllTickets, updateTicket } from '../services/ticketService';
+import { Drawer } from '../components/Drawer/Drawer';
 
 export default function Home() {
   const { on, toggler } = useToggle();
 
   const [data, setData] = useState([]);
+  const [item, setItem] = useState({});
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = (item) =>{
+    setOpen(true)
+    setItem(item)
+  }
+
+  const handleClose = ()=>{
+    setOpen(false)
+  };
 
   const getTickets = async()=>{
     const data = await getAllTickets().then((response)=> response.map((val)=> ({
@@ -67,8 +80,9 @@ const deleteTickets= async(id)=>{
   return (
     <div className='w-full lg:h-[100vh] relative p-5 bg-white' >
         <Header toggler={toggler} />
-        <ListView data={data} handleStatusChange={updateStatus} onDelete={deleteTickets} />
+        <ListView handleOpen={handleOpen} data={data} handleStatusChange={updateStatus} onDelete={deleteTickets} />
        {on && <Modal toggler={toggler} />}
+       <Drawer handleStatusChange={updateStatus} item={item} anchor="right" open={open} onClose={handleClose} />
     </div>
   )
 }

@@ -4,7 +4,7 @@ import { getStatusColor } from "../../utils/getStatusColor";
 import moment from "moment/moment";
 import DeleteIcon from "../DeleteIcon";
 
-export default function ListView({data,handleStatusChange,onDelete}) {
+export default function ListView({data,handleStatusChange,onDelete,handleOpen}) {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -83,9 +83,9 @@ export default function ListView({data,handleStatusChange,onDelete}) {
                 />
               </td>
               <td className="px-6 py-4 ">{moment(item.createdOn).format('MMM DD hh:mm A')}</td>
-              <td className="px-6 py-4 ">
-               <DeleteIcon onClick={()=>onDelete(item.id)} />
-              </td>
+              <td  onClick={()=>handleOpen(item)} class="px-6 py-4 text-right">
+                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
+                </td>
             </tr>
           ))}
         </tbody>
