@@ -6,6 +6,5 @@ export default function useToggle() {
   const toggler = () => {
     setOn((on) => !on);
   };
-
   return { on, toggler };
 }
