@@ -7,9 +7,10 @@ export default function Header(props) {
       <div className="flex flex-row items-center gap-8">
         <span className="font-bold text-lg">All Tickets</span>
         <select
-        //   onChange={handleChange}
+          onChange={props.handleChange}
           id="assignedTo"
           name="assignedTo"
+          value={props.department}
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-fit p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
         >
           <option selected="">Select Department</option>

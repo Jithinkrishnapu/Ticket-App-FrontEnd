@@ -26,8 +26,9 @@ export async function createTicket(ticketData) {
     });
   }
 
-  export async function getAllTickets() {
-    return fetch(url+'/all', {
+  export async function getAllTickets(assignedTo) {
+    const path = assignedTo ? `/all?assignedTo=${assignedTo}` : '/all'
+    return fetch(url+path, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
